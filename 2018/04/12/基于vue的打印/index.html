@@ -138,7 +138,7 @@
 <meta property="og:description" content="业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/694830ebgy1fh3pyd05klj21kw0f2dy2.jpg">
-<meta property="og:updated_time" content="2018-06-29T03:01:36.308Z">
+<meta property="og:updated_time" content="2018-10-10T08:00:36.223Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于vue的打印">
 <meta name="twitter:description" content="业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币">
@@ -452,7 +452,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,051
+                  1,357
                 </span>
               
 
@@ -468,7 +468,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  7
                 </span>
               
             </div>
@@ -489,335 +489,15 @@
       
 
       
-        <p>业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币<br><a id="more"></a><br><img src="https://ws1.sinaimg.cn/large/694830ebgy1fh3pyd05klj21kw0f2dy2.jpg" title="记账凭证"><br>插图：先用需要打印的页面用canvas画出 传成pdf 之后后台配合预览打印pdf。<br>步骤一：安装2个依赖 npm install jspdf html2canvas -D</p>
+        <h3 id="业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币"><a href="#业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币" class="headerlink" title="业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币"></a>业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币</h3><a id="more"></a>
+<p><img src="https://ws1.sinaimg.cn/large/694830ebgy1fh3pyd05klj21kw0f2dy2.jpg" title="记账凭证"><br>插图：先用需要打印的页面用canvas画出 传成pdf 之后后台配合预览打印pdf。<br>步骤一：安装2个依赖  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jspdf html2canvas -D</span><br></pre></td></tr></table></figure>
 <p>步骤二：基于jspdf与html2canvas封装一个全局打印方法</p>
 <p>代码：</p>
-<p>import html2Canvas from ‘html2canvas’</p>
-<p>import JsPDF from ‘jspdf’</p>
-<p>import axios from ‘axios’ //把pdf传给后台</p>
-<p>import qs from ‘qs’//需要转换 用JOSN.stringify()不行</p>
-<p>export default {</p>
-<p>  install(Vue, options) {</p>
-<p>Vue.prototype.getPdf= function (dom) {<br>      // var title = this.htmlTitle</p>
-<pre><code>html2Canvas(document.querySelector(dom), {
-
-  allowTaint: true
-
-}).then(function (canvas) {
-
-  let contentWidth = canvas.width
-
-  let contentHeight = canvas.height
-
-  //一页pdf显示html页面生成的canvas高度;
-
-  let pageHeight = contentWidth / 595.28 * 841.89
-
-  //未生成pdf的html页面高度
-
-  let leftHeight = contentHeight
-
-  //页面偏移
-
-  let position = 0
-
-  //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
-
-  let imgWidth = 595.28
-
-  let imgHeight = 592.28 / contentWidth * contentHeight
-
-  let pageData = canvas.toDataURL(&apos;image/jpeg&apos;, 1.0)
-
-  // 三个参数，第一个方向，第二个尺寸，第三个尺寸格式
-
-  let PDF = new JsPDF(&apos;&apos;, &apos;pt&apos;, &apos;a4&apos;)
-
-  //有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
-
-  //当内容未超过pdf一页显示的范围，无需分页
-
-  if (leftHeight &lt; pageHeight) {
-
-    PDF.addImage(pageData, &apos;JPEG&apos;, 0, 0, imgWidth, imgHeight)
-
-  } else {
-
-    while (leftHeight &gt; 0) {
-
-      PDF.addImage(pageData, &apos;JPEG&apos;, 0, position, imgWidth, imgHeight)
-
-      leftHeight -= pageHeight
-
-      position -= 841.89
-
-      //避免添加空白页
-
-      if (leftHeight &gt; 0) {
-
-        PDF.addPage()
-
-      }
-
-    }
-
-  }
-
-  var instance = axios.create({
-
-    timeout: 10000,
-</code></pre><p>headers: {‘Content-Type’: ‘application/x-www-form-urlencoded;charset=UTF-8’}</p>
-<pre><code>});
-</code></pre><p>instance.post(axios.defaults.baseURL+’/file/savepdf’,qs.stringify({</p>
-<p>//这个有毒，output输出文件流，PDF.output(‘datauristring’)输出base64文件流。<br>file:PDF.output(‘datauristring’)//base64的文件流</p>
-<pre><code>}))
-
-.then(function (response) {
-</code></pre><p>window.open(axios.defaults.baseURL+’/file/showpdf/‘+response.data.data.uri)//在新的窗口打开</p>
-<pre><code>      // let dom=document.createElement(&apos;a&apos;);
-
-      // dom.setAttribute(&apos;href&apos;,axios.defaults.baseURL+&apos;/file/showpdf/&apos;+response.data.data.uri);
-
-      // dom.setAttribute(&apos;target&apos;,&apos;_blank&apos;);
-
-     // dom.click();//模拟新的窗口打开
-
-    })
-
-    .catch(function (error) {
-
-      console.log(error);
-
-    });
-
-  })
-
-}
-</code></pre><p>  }</p>
-<p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">import html2Canvas from &apos;html2canvas&apos;</span><br><span class="line"></span><br><span class="line">import JsPDF from &apos;jspdf&apos;</span><br><span class="line"></span><br><span class="line">import axios from &apos;axios&apos; //把pdf传给后台</span><br><span class="line"></span><br><span class="line">import qs from &apos;qs&apos;//需要转换 用JOSN.stringify()不行</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line"></span><br><span class="line">  install(Vue, options) &#123;</span><br><span class="line"></span><br><span class="line">Vue.prototype.getPdf= function (dom) &#123;</span><br><span class="line">      // var title = this.htmlTitle</span><br><span class="line"></span><br><span class="line">      html2Canvas(document.querySelector(dom), &#123;</span><br><span class="line"></span><br><span class="line">        allowTaint: true</span><br><span class="line"></span><br><span class="line">      &#125;).then(function (canvas) &#123;</span><br><span class="line"></span><br><span class="line">        let contentWidth = canvas.width</span><br><span class="line"></span><br><span class="line">        let contentHeight = canvas.height</span><br><span class="line"></span><br><span class="line">        //一页pdf显示html页面生成的canvas高度;</span><br><span class="line"></span><br><span class="line">        let pageHeight = contentWidth / 595.28 * 841.89</span><br><span class="line"></span><br><span class="line">        //未生成pdf的html页面高度</span><br><span class="line"></span><br><span class="line">        let leftHeight = contentHeight</span><br><span class="line"></span><br><span class="line">        //页面偏移</span><br><span class="line"></span><br><span class="line">        let position = 0</span><br><span class="line"></span><br><span class="line">        //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高</span><br><span class="line"></span><br><span class="line">        let imgWidth = 595.28</span><br><span class="line"></span><br><span class="line">        let imgHeight = 592.28 / contentWidth * contentHeight</span><br><span class="line"></span><br><span class="line">        let pageData = canvas.toDataURL(&apos;image/jpeg&apos;, 1.0)</span><br><span class="line"></span><br><span class="line">        // 三个参数，第一个方向，第二个尺寸，第三个尺寸格式</span><br><span class="line"></span><br><span class="line">        let PDF = new JsPDF(&apos;&apos;, &apos;pt&apos;, &apos;a4&apos;)</span><br><span class="line"></span><br><span class="line">        //有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)</span><br><span class="line"></span><br><span class="line">        //当内容未超过pdf一页显示的范围，无需分页</span><br><span class="line"></span><br><span class="line">        if (leftHeight &lt; pageHeight) &#123;</span><br><span class="line"></span><br><span class="line">          PDF.addImage(pageData, &apos;JPEG&apos;, 0, 0, imgWidth, imgHeight)</span><br><span class="line"></span><br><span class="line">        &#125; else &#123;</span><br><span class="line"></span><br><span class="line">          while (leftHeight &gt; 0) &#123;</span><br><span class="line"></span><br><span class="line">            PDF.addImage(pageData, &apos;JPEG&apos;, 0, position, imgWidth, imgHeight)</span><br><span class="line"></span><br><span class="line">            leftHeight -= pageHeight</span><br><span class="line"></span><br><span class="line">            position -= 841.89</span><br><span class="line"></span><br><span class="line">            //避免添加空白页</span><br><span class="line"></span><br><span class="line">            if (leftHeight &gt; 0) &#123;</span><br><span class="line"></span><br><span class="line">              PDF.addPage()</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        var instance = axios.create(&#123;</span><br><span class="line"></span><br><span class="line">          timeout: 10000,</span><br><span class="line"></span><br><span class="line">headers: &#123;&apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded;charset=UTF-8&apos;&#125;</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">instance.post(axios.defaults.baseURL+&apos;/file/savepdf&apos;,qs.stringify(&#123;</span><br><span class="line"></span><br><span class="line">//这个有毒，output输出文件流，PDF.output(&apos;datauristring&apos;)输出base64文件流。</span><br><span class="line">file:PDF.output(&apos;datauristring&apos;)//base64的文件流</span><br><span class="line"></span><br><span class="line">        &#125;))</span><br><span class="line"></span><br><span class="line">        .then(function (response) &#123;</span><br><span class="line"></span><br><span class="line">window.open(axios.defaults.baseURL+&apos;/file/showpdf/&apos;+response.data.data.uri)//在新的窗口打开</span><br><span class="line"></span><br><span class="line">          // let dom=document.createElement(&apos;a&apos;);</span><br><span class="line"></span><br><span class="line">          // dom.setAttribute(&apos;href&apos;,axios.defaults.baseURL+&apos;/file/showpdf/&apos;+response.data.data.uri);</span><br><span class="line"></span><br><span class="line">          // dom.setAttribute(&apos;target&apos;,&apos;_blank&apos;);</span><br><span class="line"></span><br><span class="line">         // dom.click();//模拟新的窗口打开</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        .catch(function (error) &#123;</span><br><span class="line"></span><br><span class="line">          console.log(error);</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>步骤三：调用</p>
-<p>  //打印凭证</p>
-<pre><code>printVoucher() {
-
-  //日期
-
-  let Voucherdate = new Date(this.pickerOptionsValue);
-
-  let tableData = this.childData; //整个视图数据
-
-  let trData = this.childData.trData; //列数据
-
-  //拼凑数据供打印使用,凭证头，尾信息
-
-  this.voucherHFdata = {
-
-    voucherTitle: &quot;记账凭证&quot;, //记账凭证
-
-    billNum: this.billNum, //附件数
-
-    accbookName: this.$store.state.accbookName, //账套名
-
-    date:
-
-      Voucherdate.getFullYear() +
-
-      &quot;-&quot; +
-
-      (Voucherdate.getMonth() + 1) +
-
-      &quot;-&quot; +
-
-      Voucherdate.getDate(), //日期
-
-    voucherNumber: this.voucherName + &quot;-&quot; + this.voucherNumberValue, //凭证号：大-16
-
-    lotal: tableData.DeCr_Total, //合计
-
-    supervisor: &quot;&quot;, //主管
-
-    cashier: &quot;&quot;, //出纳
-
-    auditor: &quot;&quot;, //审核
-
-    producer: this.$store.state.voucherProducer //制单
-
-  };
-
-  //需打印的列数据过滤
-
-  // let listData = [];
-
-  trData.forEach((n, i) =&gt; {
-
-    //科目是否有辅助核算，有辅助核算，拼接上辅助核算eg:1001 库存现金_销售部
-
-    let subjectVal =
-
-      n.subject.val +
-
-      (n.subject.auxData.length &gt; 0 ? &quot;_&quot; : &quot;&quot;) +
-
-      n.subject.auxData
-
-        .map(item1 =&gt; {
-
-          return (
-
-            item1.options.filter(item2 =&gt; {
-
-              if (item1.value === item2.uid) return item2;
-
-            })[0].name || &quot;&quot;
-
-          );
-
-        })
-
-        .join(&quot;_&quot;);
-
-    //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB
-
-    let curName =
-
-      n.currency.currencyOptions
-
-        .filter(item =&gt; {
-
-          if (item.value === n.currency.currencyValue) return item;
-
-        })
-
-        .map(item =&gt; {
-
-          return item.label;
-
-        })[0] || &quot;&quot;;
-
-    this.listData[i] = {
-
-      abstract: n.abstract.val, //摘要
-
-      subject: subjectVal, //科目是否有辅助核算，有辅助核算，拼接上辅助核算
-
-      currencyName: curName, //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB
-
-      showCur:n.currency.show,//false不显示
-
-      exchangeRate: n.currency.exchangeRate, //汇率
-
-      original: n.currency.original, //原币
-
-      deVal: n.DeCr.De_val, //借方金额
-
-      crVal: n.DeCr.Cr_val//贷方金额
-
-    };
-
-  });
-</code></pre><p>this.$refs.print.printvoucher(); //打印<br>    },</p>
-<p>模板：</p>
-<p>export default {</p>
-<p>  name: “printVoucher”,</p>
-<p>  props: [“voucherHFdata”, “listData”],</p>
-<p>  data() {</p>
-<pre><code>return {
-
-  // htmlTitle: &quot;voucher&quot;
-
-  tableData:[],
-
-  hascur:false,
-
-};
-</code></pre><p>  },</p>
-<p>  mounted() {},</p>
-<p>  methods: {</p>
-<pre><code>printvoucher() {
-
-  this.voucher5tr(
-
-    setTimeout(()=&gt;{
-
-      this.getPdf(&quot;#printVoucher&quot;);
-
-    },1000)
-
-  );
-
-},
-
-//每5列切成一张凭证
-</code></pre><p>voucher5tr() {</p>
-<pre><code>  let tr5 = []; //[[{},{},{},{},{}]]一维变多维
-
-  let tr = this.listData;
-
-  let index = 0;
-
-  tr.forEach((n, i) =&gt; {
-
-    if (!tr5[index]) {
-
-      tr5[index] = [];
-
-    }
-
-    tr5[index].push(n);
-
-    if (tr5[index].length === 5) {
-
-      index++;
-
-    }
-
-  });
-
-  let last = tr5[tr5.length - 1];
-
-  for (let i = 0,l = 5 - last.length; i &lt; l; i++) {
-
-    last.push({
-
-      abstract: &quot;&quot;, //摘要
-
-      showCur:false,//外币不显示
-
-      subject: &quot;&quot;, //科目是否有辅助核算，有辅助核算，拼接上辅助核算
-
-      currencyName: &quot;&quot;, //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB
-
-      exchangeRate: &quot;&quot;, //汇率
-
-      original: &quot;&quot;, //原币
-
-      crVal: &quot;&quot;, //贷方金额
-
-      deVal: &quot;&quot; //借方金额
-
-    });
-
-  }
-
-  this.tableData=tr5;
-
-  this.tableData.forEach(n=&gt;{
-
-    n.forEach(n1=&gt;{
-
-      if(n1.showCur===true){
-
-        this.hascur=true;
-
-      }
-
-    })
-
-  })
-
-}
-</code></pre><p>  }</p>
-<p>};</p>
-<p>作者：清减半夏时光<br>链接：<a href="https://www.jianshu.com/p/3665fbc2533b" target="_blank" rel="noopener">https://www.jianshu.com/p/3665fbc2533b</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>  //打印凭证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">    printVoucher() &#123;</span><br><span class="line"></span><br><span class="line">      //日期</span><br><span class="line"></span><br><span class="line">      let Voucherdate = new Date(this.pickerOptionsValue);</span><br><span class="line"></span><br><span class="line">      let tableData = this.childData; //整个视图数据</span><br><span class="line"></span><br><span class="line">      let trData = this.childData.trData; //列数据</span><br><span class="line"></span><br><span class="line">      //拼凑数据供打印使用,凭证头，尾信息</span><br><span class="line"></span><br><span class="line">      this.voucherHFdata = &#123;</span><br><span class="line"></span><br><span class="line">        voucherTitle: &quot;记账凭证&quot;, //记账凭证</span><br><span class="line"></span><br><span class="line">        billNum: this.billNum, //附件数</span><br><span class="line"></span><br><span class="line">        accbookName: this.$store.state.accbookName, //账套名</span><br><span class="line"></span><br><span class="line">        date:</span><br><span class="line"></span><br><span class="line">          Voucherdate.getFullYear() +</span><br><span class="line"></span><br><span class="line">          &quot;-&quot; +</span><br><span class="line"></span><br><span class="line">          (Voucherdate.getMonth() + 1) +</span><br><span class="line"></span><br><span class="line">          &quot;-&quot; +</span><br><span class="line"></span><br><span class="line">          Voucherdate.getDate(), //日期</span><br><span class="line"></span><br><span class="line">        voucherNumber: this.voucherName + &quot;-&quot; + this.voucherNumberValue, //凭证号：大-16</span><br><span class="line"></span><br><span class="line">        lotal: tableData.DeCr_Total, //合计</span><br><span class="line"></span><br><span class="line">        supervisor: &quot;&quot;, //主管</span><br><span class="line"></span><br><span class="line">        cashier: &quot;&quot;, //出纳</span><br><span class="line"></span><br><span class="line">        auditor: &quot;&quot;, //审核</span><br><span class="line"></span><br><span class="line">        producer: this.$store.state.voucherProducer //制单</span><br><span class="line"></span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      //需打印的列数据过滤</span><br><span class="line"></span><br><span class="line">      // let listData = [];</span><br><span class="line"></span><br><span class="line">      trData.forEach((n, i) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">        //科目是否有辅助核算，有辅助核算，拼接上辅助核算eg:1001 库存现金_销售部</span><br><span class="line"></span><br><span class="line">        let subjectVal =</span><br><span class="line"></span><br><span class="line">          n.subject.val +</span><br><span class="line"></span><br><span class="line">          (n.subject.auxData.length &gt; 0 ? &quot;_&quot; : &quot;&quot;) +</span><br><span class="line"></span><br><span class="line">          n.subject.auxData</span><br><span class="line"></span><br><span class="line">            .map(item1 =&gt; &#123;</span><br><span class="line"></span><br><span class="line">              return (</span><br><span class="line"></span><br><span class="line">                item1.options.filter(item2 =&gt; &#123;</span><br><span class="line"></span><br><span class="line">                  if (item1.value === item2.uid) return item2;</span><br><span class="line"></span><br><span class="line">                &#125;)[0].name || &quot;&quot;</span><br><span class="line"></span><br><span class="line">              );</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">            .join(&quot;_&quot;);</span><br><span class="line"></span><br><span class="line">        //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB</span><br><span class="line"></span><br><span class="line">        let curName =</span><br><span class="line"></span><br><span class="line">          n.currency.currencyOptions</span><br><span class="line"></span><br><span class="line">            .filter(item =&gt; &#123;</span><br><span class="line"></span><br><span class="line">              if (item.value === n.currency.currencyValue) return item;</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">            .map(item =&gt; &#123;</span><br><span class="line"></span><br><span class="line">              return item.label;</span><br><span class="line"></span><br><span class="line">            &#125;)[0] || &quot;&quot;;</span><br><span class="line"></span><br><span class="line">        this.listData[i] = &#123;</span><br><span class="line"></span><br><span class="line">          abstract: n.abstract.val, //摘要</span><br><span class="line"></span><br><span class="line">          subject: subjectVal, //科目是否有辅助核算，有辅助核算，拼接上辅助核算</span><br><span class="line"></span><br><span class="line">          currencyName: curName, //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB</span><br><span class="line"></span><br><span class="line">          showCur:n.currency.show,//false不显示</span><br><span class="line"></span><br><span class="line">          exchangeRate: n.currency.exchangeRate, //汇率</span><br><span class="line"></span><br><span class="line">          original: n.currency.original, //原币</span><br><span class="line"></span><br><span class="line">          deVal: n.DeCr.De_val, //借方金额</span><br><span class="line"></span><br><span class="line">          crVal: n.DeCr.Cr_val//贷方金额</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">this.$refs.print.printvoucher(); //打印</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure></p>
+<p>模板：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line"></span><br><span class="line">  name: &quot;printVoucher&quot;,</span><br><span class="line"></span><br><span class="line">  props: [&quot;voucherHFdata&quot;, &quot;listData&quot;],</span><br><span class="line"></span><br><span class="line">  data() &#123;</span><br><span class="line"></span><br><span class="line">    return &#123;</span><br><span class="line"></span><br><span class="line">      // htmlTitle: &quot;voucher&quot;</span><br><span class="line"></span><br><span class="line">      tableData:[],</span><br><span class="line"></span><br><span class="line">      hascur:false,</span><br><span class="line"></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  mounted() &#123;&#125;,</span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line"></span><br><span class="line">    printvoucher() &#123;</span><br><span class="line"></span><br><span class="line">      this.voucher5tr(</span><br><span class="line"></span><br><span class="line">        setTimeout(()=&gt;&#123;</span><br><span class="line"></span><br><span class="line">          this.getPdf(&quot;#printVoucher&quot;);</span><br><span class="line"></span><br><span class="line">        &#125;,1000)</span><br><span class="line"></span><br><span class="line">      );</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    //每5列切成一张凭证</span><br><span class="line"></span><br><span class="line">voucher5tr() &#123;</span><br><span class="line"></span><br><span class="line">      let tr5 = []; //[[&#123;&#125;,&#123;&#125;,&#123;&#125;,&#123;&#125;,&#123;&#125;]]一维变多维</span><br><span class="line"></span><br><span class="line">      let tr = this.listData;</span><br><span class="line"></span><br><span class="line">      let index = 0;</span><br><span class="line"></span><br><span class="line">      tr.forEach((n, i) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">        if (!tr5[index]) &#123;</span><br><span class="line"></span><br><span class="line">          tr5[index] = [];</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        tr5[index].push(n);</span><br><span class="line"></span><br><span class="line">        if (tr5[index].length === 5) &#123;</span><br><span class="line"></span><br><span class="line">          index++;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      let last = tr5[tr5.length - 1];</span><br><span class="line"></span><br><span class="line">      for (let i = 0,l = 5 - last.length; i &lt; l; i++) &#123;</span><br><span class="line"></span><br><span class="line">        last.push(&#123;</span><br><span class="line"></span><br><span class="line">          abstract: &quot;&quot;, //摘要</span><br><span class="line"></span><br><span class="line">          showCur:false,//外币不显示</span><br><span class="line"></span><br><span class="line">          subject: &quot;&quot;, //科目是否有辅助核算，有辅助核算，拼接上辅助核算</span><br><span class="line"></span><br><span class="line">          currencyName: &quot;&quot;, //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB</span><br><span class="line"></span><br><span class="line">          exchangeRate: &quot;&quot;, //汇率</span><br><span class="line"></span><br><span class="line">          original: &quot;&quot;, //原币</span><br><span class="line"></span><br><span class="line">          crVal: &quot;&quot;, //贷方金额</span><br><span class="line"></span><br><span class="line">          deVal: &quot;&quot; //借方金额</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      this.tableData=tr5;</span><br><span class="line"></span><br><span class="line">      this.tableData.forEach(n=&gt;&#123;</span><br><span class="line"></span><br><span class="line">        n.forEach(n1=&gt;&#123;</span><br><span class="line"></span><br><span class="line">          if(n1.showCur===true)&#123;</span><br><span class="line"></span><br><span class="line">            this.hascur=true;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -990,8 +670,17 @@ var jiathis_config={
     <div class="sidebar-inner">
 
          
+        <ul class="sidebar-nav motion-element">
+            <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+                文章目录
+            </li>
+            <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+                站点概览
+            </li>
+        </ul>
+        
 
-        <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <section class="site-overview-wrap sidebar-panel">
             <div class="site-overview">
                 <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
                     
@@ -1008,21 +697,21 @@ var jiathis_config={
                         
                         <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
                     </div>
                        
                     <div class="site-state-item site-state-categories">
                         <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
                     </div>
                        
                     <div class="site-state-item site-state-tags">
                         <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
                     </div>
@@ -1106,6 +795,18 @@ var jiathis_config={
             </div>
         </section>
 
+        
+        <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+            <div class="post-toc">
+
+                   
+                    <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币"><span class="nav-number">1.</span> <span class="nav-text">业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币</span></a></li></ol></div>
+                    
+
+            </div>
+        </section>
+        <!--/noindex-->
          
 
     </div>
@@ -1130,7 +831,7 @@ var jiathis_config={
       <i class="fa fa-area-chart"></i>
     </span> 
     <span class="post-meta-item-text">Site words total count&#58;</span> 
-    <span title="Site words total count">1.8k</span> 
+    <span title="Site words total count">3.2k</span> 
 </div>
 
 

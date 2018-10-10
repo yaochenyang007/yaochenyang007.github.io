@@ -355,6 +355,383 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wenchenkj.com/2018/10/10/vue插件使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="姚晨阳">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/ycy.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="姚晨阳">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/10/vue插件使用/" itemprop="url">vue插件使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-10T15:35:00+08:00">
+                2018-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/10/vue插件使用/" class="leancloud_visitors" data-flag-title="vue插件使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  223
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Loading-加载-插件开发"><a href="#Loading-加载-插件开发" class="headerlink" title="Loading 加载 插件开发"></a>Loading 加载 插件开发</h2><p>通过全局方法 Vue.use() 使用插件。它需要在你调用 new Vue() 启动应用之前完成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 调用 `MyPlugin.install(Vue)`</span><br><span class="line">Vue.use(MyPlugin)</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  //... options</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>代码源码（vue-cli 脚手架生成单页面项目）：</p>
+<p>@/components/public/varMess.vue 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;transition name=&quot;varMess-fade&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;varMess&quot; v-show=&quot;isShow&quot;&gt;</span><br><span class="line">                    &lt;img class=&quot;message_img&quot; src=&quot;../img/loading.png&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;message_group&quot;&gt;</span><br><span class="line">                        &lt;p&gt;&#123;&#123;messText&#125;&#125;&lt;/p&gt;</span><br><span class="line">                        &lt;!-- &lt;el-button @click=&quot;isShow = false&quot;&gt;123&lt;/el-button&gt; --&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">    &lt;/transition&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default &#123;</span><br><span class="line">        props:[&apos;isShow&apos;,&apos;messText&apos;],</span><br><span class="line">        methods:&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/10/vue插件使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+
+     
+
+    
+
+    
+
+    
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+     
+
+   
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wenchenkj.com/2018/10/10/linux-基本操作命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="姚晨阳">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/ycy.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="姚晨阳">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/10/linux-基本操作命令/" itemprop="url">linux 基本操作命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-10T11:16:43+08:00">
+                2018-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/10/10/linux-基本操作命令/" class="leancloud_visitors" data-flag-title="linux 基本操作命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  849
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Linux ,免费开源，多用户多任务系统。基于Linux有多个版本的衍生。RedHat、Ubuntu、Debian 安装VMware 或 VirtualBox 虚拟机。</p>
+<h3 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h3><blockquote>
+<p>ls 显示文件或目录<br>mkdir 创建目录<br>cd   切换目录<br>touch 创建空文件<br>echo  创建带有内容的文件<br>cat   查看文件内容<br>cp 拷贝<br>mv  移动或重命令<br>rm  删除文件<br>    -r 递归删除，可删除子目录及文件<br>    -f         强制删除<br>find              在文件系统中搜索某文件<br>rmdir           删除空目录<br>pwd              显示当前目录</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/10/linux-基本操作命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+
+     
+
+    
+
+    
+
+    
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+     
+
+   
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wenchenkj.com/2018/09/26/markdown语法练习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -489,82 +866,17 @@
 
       
         
-          
-            <h2 id="熟悉markdown-语法"><a href="#熟悉markdown-语法" class="headerlink" title="熟悉markdown 语法"></a>熟悉markdown 语法</h2><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>hello word<a href="http://yaochenyang.xin" target="_blank" rel="noopener">文晨科技</a></p>
+          <h2 id="熟悉markdown-语法"><a href="#熟悉markdown-语法" class="headerlink" title="熟悉markdown 语法"></a>熟悉markdown 语法</h2><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>hello word<a href="http://yaochenyang.xin" target="_blank" rel="noopener">文晨科技</a></p>
 <h3 id="有序列表-1-2-3"><a href="#有序列表-1-2-3" class="headerlink" title="有序列表 1.2.3"></a>有序列表 1.2.3</h3><p>1.列表内容<br>2.列表内容<br>3.列表内容</p>
 <h3 id="加载http网络图片"><a href="#加载http网络图片" class="headerlink" title="加载http网络图片"></a>加载http网络图片</h3><p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/
-u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg" alt="blockchain" title="区块链"></p>
-<h3 id="加载本地图片"><a href="#加载本地图片" class="headerlink" title="加载本地图片"></a>加载本地图片</h3><p><img src="../img/alipay.jpg" alt="本地图片" title="支付宝"></p>
-<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><ul>
-<li>列表内容</li>
-</ul>
-<ul>
-<li>列表内容</li>
-</ul>
-<ul>
-<li>列表内容</li>
-</ul>
-<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello word ycy</span><br></pre></td></tr></table></figure>
-<h3 id="斜体，加粗，删除线-斜体-，-加粗-，-（斜体加粗），-（删除线）"><a href="#斜体，加粗，删除线-斜体-，-加粗-，-（斜体加粗），-（删除线）" class="headerlink" title="斜体，加粗，删除线   _ (斜体) ， (加粗) ， （斜体加粗），~~（删除线）"></a>斜体，加粗，删除线  <em> _ (斜体) ， <strong>(加粗) ， </strong></em>（斜体加粗），~~（删除线）</h3><p><em>这是倾斜的文字</em><br><em>这是倾斜的文字1</em><br><strong>这是加粗 </strong><br><strong><em>这是斜体加粗的文字</em></strong><br><del>这是加删除线的文字</del></p>
-<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><blockquote>
-<p>这是引用的内容</p>
-</blockquote>
-<h3 id="分割线-，-—-，"><a href="#分割线-，-—-，" class="headerlink" title="分割线  ***， — ，_ _ _"></a>分割线  ***， — ，_ _ _</h3><p><em>** （</em>号）<br>— （减号）<br>_ _ _ （下划线）</p>
-<h3 id="表格-（冒号写在左边表示左对齐-，右边为右对齐，两边都写表示居中）"><a href="#表格-（冒号写在左边表示左对齐-，右边为右对齐，两边都写表示居中）" class="headerlink" title="表格  （冒号写在左边表示左对齐 ，右边为右对齐，两边都写表示居中）"></a>表格  （冒号写在左边表示左对齐 ，右边为右对齐，两边都写表示居中）</h3><table>
-<thead>
-<tr>
-<th style="text-align:left">表头</th>
-<th style="text-align:center">表头</th>
-<th style="text-align:right">表头</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">内容</td>
-<td style="text-align:center">内容</td>
-<td style="text-align:right">内容</td>
-</tr>
-<tr>
-<td style="text-align:left">内容</td>
-<td style="text-align:center">内容</td>
-<td style="text-align:right">内容</td>
-</tr>
-</tbody>
-</table>
-<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p>定义元素的语法</p>
-<blockquote>
-<p>tag=&gt;type: content:&gt;url; </p>
-</blockquote>
-<p>1.tag 是流程图中的标签，在第二段连接元素时会用到。名称可以任意，一般为流程的英文缩写和数字的组合。<br>2.type 用来确定标签的类型，=&gt;后面表示类型。由于标签的名称可以任意指定，所以要依赖type来确定标签的类型<br>标签有6种类型：start end operation condition inputoutput subroutine<br>3.content 是流程图文本框中的描述内容，: 后面表示内容，中英文均可。特别注意，冒号与文本之间一定要有个空格<br>4.url是一个连接，与框框中的文本相绑定，:&gt;后面就是对应的 url 链接，点击文本时可以通过链接跳转到 url 指定页面 </p>
-<p>1.开始<br>st=&gt;start: 开始</p>
-<p>2.结束</p>
-<p>e=&gt;end: 结束</p>
-<p>3.操作</p>
-<p>op1=&gt;operation: 操作、执行说明</p>
-<p>4.条件</p>
-<p>cond=&gt;condition: 确认？</p>
-<p>5.输入输出</p>
-<p>io=&gt;inputoutput: catchsomething…</p>
-<p>6.子程序</p>
-<p>sub1=&gt;subroutine: My Subroutine</p>
-<p>7.URL</p>
-<p>e=&gt;点击本结束跳转:&gt;</p>
-<p>+使用 -&gt; 来连接两个元素<br>+对于condition类型，有yes和no两个分支，如示例中的cond(yes)和cond(no)<br>+每个元素可以制定分支走向，默认向下，也可以用right指向右边，如示例中sub1(right)。</p>
-<pre><code class="flow"> st=&gt;start: 生产者线程进入 :&gt;www.wenchenkj.com
-op1=&gt;operation: 设置Info类的名称和内容
-op2=&gt;operation: 修改标志位
-op3=&gt;operation: 等待线程唤醒
-op4=&gt;operation: 等待消费者取走
-cond=&gt;condition: 判断标志位
-
-st(right)-&gt;cond-&gt;op1-&gt;op2-&gt;op3
-cond(yes,right)-&gt;op1
-cond(no)-&gt;op4
-</code></pre>
-<p> <img src="../img/lct.png" alt="本地图片" title="流程图"></p>
-<p><strong><em>上面的流程图使用了URL点击上面的的开始框(生产者线程进入)，就会跳转到我的博客首页<a href="http://www.wenchenkj.com。" target="_blank" rel="noopener">www.wenchenkj.com。</a><br>这里再强调一下：每一个元素都可以加上right指明流程流程图的方向，如果不指定的话默认是向下的</em></strong></p>
-
-          
+u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg" alt="blockchain" title="区块链"><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/26/markdown语法练习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -911,7 +1223,7 @@ cond(no)-&gt;op4
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,051
+                  1,357
                 </span>
               
 
@@ -927,7 +1239,7 @@ cond(no)-&gt;op4
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  7
                 </span>
               
             </div>
@@ -949,7 +1261,7 @@ cond(no)-&gt;op4
 
       
         
-          <p>业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币<br>
+          <h3 id="业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币"><a href="#业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币" class="headerlink" title="业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币"></a>业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币</h3>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/12/基于vue的打印/#more" rel="contents">
@@ -1042,21 +1354,21 @@ cond(no)-&gt;op4
                         
                         <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
                     </div>
                        
                     <div class="site-state-item site-state-categories">
                         <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
                     </div>
                        
                     <div class="site-state-item site-state-tags">
                         <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
                     </div>
@@ -1164,7 +1476,7 @@ cond(no)-&gt;op4
       <i class="fa fa-area-chart"></i>
     </span> 
     <span class="post-meta-item-text">Site words total count&#58;</span> 
-    <span title="Site words total count">1.8k</span> 
+    <span title="Site words total count">3.2k</span> 
 </div>
 
 
