@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>姚晨阳</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://wenchenkj.com/"/>
+  <updated>2018-10-10T02:28:33.907Z</updated>
+  <id>http://wenchenkj.com/</id>
+  
+  <author>
+    <name>姚晨阳</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>markdown语法练习</title>
+    <link href="http://wenchenkj.com/2018/09/26/markdown%E8%AF%AD%E6%B3%95%E7%BB%83%E4%B9%A0/"/>
+    <id>http://wenchenkj.com/2018/09/26/markdown语法练习/</id>
+    <published>2018-09-26T07:30:52.000Z</published>
+    <updated>2018-10-10T02:28:33.907Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="熟悉markdown-语法"><a href="#熟悉markdown-语法" class="headerlink" title="熟悉markdown 语法"></a>熟悉markdown 语法</h2><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>hello word<a href="http://yaochenyang.xin" target="_blank" rel="noopener">文晨科技</a></p><h3 id="有序列表-1-2-3"><a href="#有序列表-1-2-3" class="headerlink" title="有序列表 1.2.3"></a>有序列表 1.2.3</h3><p>1.列表内容<br>2.列表内容<br>3.列表内容</p><h3 id="加载http网络图片"><a href="#加载http网络图片" class="headerlink" title="加载http网络图片"></a>加载http网络图片</h3><p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&amp;fm=27&amp;gp=0.jpg" alt="blockchain" title="区块链"></p><h3 id="加载本地图片"><a href="#加载本地图片" class="headerlink" title="加载本地图片"></a>加载本地图片</h3><p><img src="../img/alipay.jpg" alt="本地图片" title="支付宝"></p><h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><ul><li>列表内容</li></ul><ul><li>列表内容</li></ul><ul><li>列表内容</li></ul><h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello word ycy</span><br></pre></td></tr></table></figure><h3 id="斜体，加粗，删除线-斜体-，-加粗-，-（斜体加粗），-（删除线）"><a href="#斜体，加粗，删除线-斜体-，-加粗-，-（斜体加粗），-（删除线）" class="headerlink" title="斜体，加粗，删除线   _ (斜体) ， (加粗) ， （斜体加粗），~~（删除线）"></a>斜体，加粗，删除线  <em> _ (斜体) ， <strong>(加粗) ， </strong></em>（斜体加粗），~~（删除线）</h3><p><em>这是倾斜的文字</em><br><em>这是倾斜的文字1</em><br><strong>这是加粗 </strong><br><strong><em>这是斜体加粗的文字</em></strong><br><del>这是加删除线的文字</del></p><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><blockquote><p>这是引用的内容</p></blockquote><h3 id="分割线-，-—-，"><a href="#分割线-，-—-，" class="headerlink" title="分割线  ***， — ，_ _ _"></a>分割线  ***， — ，_ _ _</h3><p><em>** （</em>号）<br>— （减号）<br>_ _ _ （下划线）</p><h3 id="表格-（冒号写在左边表示左对齐-，右边为右对齐，两边都写表示居中）"><a href="#表格-（冒号写在左边表示左对齐-，右边为右对齐，两边都写表示居中）" class="headerlink" title="表格  （冒号写在左边表示左对齐 ，右边为右对齐，两边都写表示居中）"></a>表格  （冒号写在左边表示左对齐 ，右边为右对齐，两边都写表示居中）</h3><table><thead><tr><th style="text-align:left">表头</th><th style="text-align:center">表头</th><th style="text-align:right">表头</th></tr></thead><tbody><tr><td style="text-align:left">内容</td><td style="text-align:center">内容</td><td style="text-align:right">内容</td></tr><tr><td style="text-align:left">内容</td><td style="text-align:center">内容</td><td style="text-align:right">内容</td></tr></tbody></table><h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p>定义元素的语法</p><blockquote><p>tag=&gt;type: content:&gt;url; </p></blockquote><p>1.tag 是流程图中的标签，在第二段连接元素时会用到。名称可以任意，一般为流程的英文缩写和数字的组合。<br>2.type 用来确定标签的类型，=&gt;后面表示类型。由于标签的名称可以任意指定，所以要依赖type来确定标签的类型<br>标签有6种类型：start end operation condition inputoutput subroutine<br>3.content 是流程图文本框中的描述内容，: 后面表示内容，中英文均可。特别注意，冒号与文本之间一定要有个空格<br>4.url是一个连接，与框框中的文本相绑定，:&gt;后面就是对应的 url 链接，点击文本时可以通过链接跳转到 url 指定页面 </p><p>1.开始<br>st=&gt;start: 开始</p><p>2.结束</p><p>e=&gt;end: 结束</p><p>3.操作</p><p>op1=&gt;operation: 操作、执行说明</p><p>4.条件</p><p>cond=&gt;condition: 确认？</p><p>5.输入输出</p><p>io=&gt;inputoutput: catchsomething…</p><p>6.子程序</p><p>sub1=&gt;subroutine: My Subroutine</p><p>7.URL</p><p>e=&gt;点击本结束跳转:&gt;</p><p>+使用 -&gt; 来连接两个元素<br>+对于condition类型，有yes和no两个分支，如示例中的cond(yes)和cond(no)<br>+每个元素可以制定分支走向，默认向下，也可以用right指向右边，如示例中sub1(right)。</p><pre><code class="flow"> st=&gt;start: 生产者线程进入 :&gt;www.wenchenkj.comop1=&gt;operation: 设置Info类的名称和内容op2=&gt;operation: 修改标志位op3=&gt;operation: 等待线程唤醒op4=&gt;operation: 等待消费者取走cond=&gt;condition: 判断标志位st(right)-&gt;cond-&gt;op1-&gt;op2-&gt;op3cond(yes,right)-&gt;op1cond(no)-&gt;op4</code></pre><p> <img src="../img/lct.png" alt="本地图片" title="流程图"></p><p><strong><em>上面的流程图使用了URL点击上面的的开始框(生产者线程进入)，就会跳转到我的博客首页<a href="http://www.wenchenkj.com。" target="_blank" rel="noopener">www.wenchenkj.com。</a><br>这里再强调一下：每一个元素都可以加上right指明流程流程图的方向，如果不指定的话默认是向下的</em></strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;熟悉markdown-语法&quot;&gt;&lt;a href=&quot;#熟悉markdown-语法&quot; class=&quot;headerlink&quot; title=&quot;熟悉markdown 语法&quot;&gt;&lt;/a&gt;熟悉markdown 语法&lt;/h2&gt;&lt;h3 id=&quot;链接&quot;&gt;&lt;a href=&quot;#链接&quot; cla
+      
+    
+    </summary>
+    
+      <category term="markdown" scheme="http://wenchenkj.com/categories/markdown/"/>
+    
+    
+      <category term="markdown" scheme="http://wenchenkj.com/tags/markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://wenchenkj.com/2018/06/29/hello-world/"/>
+    <id>http://wenchenkj.com/2018/06/29/hello-world/</id>
+    <published>2018-06-29T03:01:36.308Z</published>
+    <updated>2018-09-25T08:23:24.079Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><a id="more"></a></p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://wenchenkj.com/categories/hexo/"/>
+    
+    
+      <category term="npm" scheme="http://wenchenkj.com/tags/npm/"/>
+    
+      <category term="Github" scheme="http://wenchenkj.com/tags/Github/"/>
+    
+      <category term="Hexo" scheme="http://wenchenkj.com/tags/Hexo/"/>
+    
+      <category term="基础" scheme="http://wenchenkj.com/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于vue的打印</title>
+    <link href="http://wenchenkj.com/2018/04/12/%E5%9F%BA%E4%BA%8Evue%E7%9A%84%E6%89%93%E5%8D%B0/"/>
+    <id>http://wenchenkj.com/2018/04/12/基于vue的打印/</id>
+    <published>2018-04-12T08:46:49.000Z</published>
+    <updated>2018-06-29T03:01:36.308Z</updated>
+    
+    <content type="html"><![CDATA[<p>业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币<br><a id="more"></a><br><img src="https://ws1.sinaimg.cn/large/694830ebgy1fh3pyd05klj21kw0f2dy2.jpg" title="记账凭证"><br>插图：先用需要打印的页面用canvas画出 传成pdf 之后后台配合预览打印pdf。<br>步骤一：安装2个依赖 npm install jspdf html2canvas -D</p><p>步骤二：基于jspdf与html2canvas封装一个全局打印方法</p><p>代码：</p><p>import html2Canvas from ‘html2canvas’</p><p>import JsPDF from ‘jspdf’</p><p>import axios from ‘axios’ //把pdf传给后台</p><p>import qs from ‘qs’//需要转换 用JOSN.stringify()不行</p><p>export default {</p><p>  install(Vue, options) {</p><p>Vue.prototype.getPdf= function (dom) {<br>      // var title = this.htmlTitle</p><pre><code>html2Canvas(document.querySelector(dom), {  allowTaint: true}).then(function (canvas) {  let contentWidth = canvas.width  let contentHeight = canvas.height  //一页pdf显示html页面生成的canvas高度;  let pageHeight = contentWidth / 595.28 * 841.89  //未生成pdf的html页面高度  let leftHeight = contentHeight  //页面偏移  let position = 0  //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高  let imgWidth = 595.28  let imgHeight = 592.28 / contentWidth * contentHeight  let pageData = canvas.toDataURL(&apos;image/jpeg&apos;, 1.0)  // 三个参数，第一个方向，第二个尺寸，第三个尺寸格式  let PDF = new JsPDF(&apos;&apos;, &apos;pt&apos;, &apos;a4&apos;)  //有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)  //当内容未超过pdf一页显示的范围，无需分页  if (leftHeight &lt; pageHeight) {    PDF.addImage(pageData, &apos;JPEG&apos;, 0, 0, imgWidth, imgHeight)  } else {    while (leftHeight &gt; 0) {      PDF.addImage(pageData, &apos;JPEG&apos;, 0, position, imgWidth, imgHeight)      leftHeight -= pageHeight      position -= 841.89      //避免添加空白页      if (leftHeight &gt; 0) {        PDF.addPage()      }    }  }  var instance = axios.create({    timeout: 10000,</code></pre><p>headers: {‘Content-Type’: ‘application/x-www-form-urlencoded;charset=UTF-8’}</p><pre><code>});</code></pre><p>instance.post(axios.defaults.baseURL+’/file/savepdf’,qs.stringify({</p><p>//这个有毒，output输出文件流，PDF.output(‘datauristring’)输出base64文件流。<br>file:PDF.output(‘datauristring’)//base64的文件流</p><pre><code>})).then(function (response) {</code></pre><p>window.open(axios.defaults.baseURL+’/file/showpdf/‘+response.data.data.uri)//在新的窗口打开</p><pre><code>      // let dom=document.createElement(&apos;a&apos;);      // dom.setAttribute(&apos;href&apos;,axios.defaults.baseURL+&apos;/file/showpdf/&apos;+response.data.data.uri);      // dom.setAttribute(&apos;target&apos;,&apos;_blank&apos;);     // dom.click();//模拟新的窗口打开    })    .catch(function (error) {      console.log(error);    });  })}</code></pre><p>  }</p><p>}</p><p>步骤三：调用</p><p>  //打印凭证</p><pre><code>printVoucher() {  //日期  let Voucherdate = new Date(this.pickerOptionsValue);  let tableData = this.childData; //整个视图数据  let trData = this.childData.trData; //列数据  //拼凑数据供打印使用,凭证头，尾信息  this.voucherHFdata = {    voucherTitle: &quot;记账凭证&quot;, //记账凭证    billNum: this.billNum, //附件数    accbookName: this.$store.state.accbookName, //账套名    date:      Voucherdate.getFullYear() +      &quot;-&quot; +      (Voucherdate.getMonth() + 1) +      &quot;-&quot; +      Voucherdate.getDate(), //日期    voucherNumber: this.voucherName + &quot;-&quot; + this.voucherNumberValue, //凭证号：大-16    lotal: tableData.DeCr_Total, //合计    supervisor: &quot;&quot;, //主管    cashier: &quot;&quot;, //出纳    auditor: &quot;&quot;, //审核    producer: this.$store.state.voucherProducer //制单  };  //需打印的列数据过滤  // let listData = [];  trData.forEach((n, i) =&gt; {    //科目是否有辅助核算，有辅助核算，拼接上辅助核算eg:1001 库存现金_销售部    let subjectVal =      n.subject.val +      (n.subject.auxData.length &gt; 0 ? &quot;_&quot; : &quot;&quot;) +      n.subject.auxData        .map(item1 =&gt; {          return (            item1.options.filter(item2 =&gt; {              if (item1.value === item2.uid) return item2;            })[0].name || &quot;&quot;          );        })        .join(&quot;_&quot;);    //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB    let curName =      n.currency.currencyOptions        .filter(item =&gt; {          if (item.value === n.currency.currencyValue) return item;        })        .map(item =&gt; {          return item.label;        })[0] || &quot;&quot;;    this.listData[i] = {      abstract: n.abstract.val, //摘要      subject: subjectVal, //科目是否有辅助核算，有辅助核算，拼接上辅助核算      currencyName: curName, //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB      showCur:n.currency.show,//false不显示      exchangeRate: n.currency.exchangeRate, //汇率      original: n.currency.original, //原币      deVal: n.DeCr.De_val, //借方金额      crVal: n.DeCr.Cr_val//贷方金额    };  });</code></pre><p>this.$refs.print.printvoucher(); //打印<br>    },</p><p>模板：</p><p>export default {</p><p>  name: “printVoucher”,</p><p>  props: [“voucherHFdata”, “listData”],</p><p>  data() {</p><pre><code>return {  // htmlTitle: &quot;voucher&quot;  tableData:[],  hascur:false,};</code></pre><p>  },</p><p>  mounted() {},</p><p>  methods: {</p><pre><code>printvoucher() {  this.voucher5tr(    setTimeout(()=&gt;{      this.getPdf(&quot;#printVoucher&quot;);    },1000)  );},//每5列切成一张凭证</code></pre><p>voucher5tr() {</p><pre><code>  let tr5 = []; //[[{},{},{},{},{}]]一维变多维  let tr = this.listData;  let index = 0;  tr.forEach((n, i) =&gt; {    if (!tr5[index]) {      tr5[index] = [];    }    tr5[index].push(n);    if (tr5[index].length === 5) {      index++;    }  });  let last = tr5[tr5.length - 1];  for (let i = 0,l = 5 - last.length; i &lt; l; i++) {    last.push({      abstract: &quot;&quot;, //摘要      showCur:false,//外币不显示      subject: &quot;&quot;, //科目是否有辅助核算，有辅助核算，拼接上辅助核算      currencyName: &quot;&quot;, //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB      exchangeRate: &quot;&quot;, //汇率      original: &quot;&quot;, //原币      crVal: &quot;&quot;, //贷方金额      deVal: &quot;&quot; //借方金额    });  }  this.tableData=tr5;  this.tableData.forEach(n=&gt;{    n.forEach(n1=&gt;{      if(n1.showCur===true){        this.hascur=true;      }    })  })}</code></pre><p>  }</p><p>};</p><p>作者：清减半夏时光<br>链接：<a href="https://www.jianshu.com/p/3665fbc2533b" target="_blank" rel="noopener">https://www.jianshu.com/p/3665fbc2533b</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币&lt;br&gt;
+    
+    </summary>
+    
+      <category term="vue" scheme="http://wenchenkj.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="http://wenchenkj.com/tags/vue/"/>
+    
+      <category term="canvas" scheme="http://wenchenkj.com/tags/canvas/"/>
+    
+      <category term="npm" scheme="http://wenchenkj.com/tags/npm/"/>
+    
+      <category term="javascript" scheme="http://wenchenkj.com/tags/javascript/"/>
+    
+  </entry>
+  
+</feed>

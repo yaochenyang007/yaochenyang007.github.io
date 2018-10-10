@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[markdown语法练习]]></title>
+    <url>%2F2018%2F09%2F26%2Fmarkdown%E8%AF%AD%E6%B3%95%E7%BB%83%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[熟悉markdown 语法链接hello word文晨科技 有序列表 1.2.31.列表内容2.列表内容3.列表内容 加载http网络图片 加载本地图片 无序列表 列表内容 列表内容 列表内容 代码块1hello word ycy 斜体，加粗，删除线 _ (斜体) ， (加粗) ， （斜体加粗），~~（删除线）这是倾斜的文字这是倾斜的文字1这是加粗 这是斜体加粗的文字这是加删除线的文字 引用 这是引用的内容 分割线 ***， — ，_ _ _** （号）— （减号）_ _ _ （下划线） 表格 （冒号写在左边表示左对齐 ，右边为右对齐，两边都写表示居中） 表头 表头 表头 内容 内容 内容 内容 内容 内容 流程图定义元素的语法 tag=&gt;type: content:&gt;url; 1.tag 是流程图中的标签，在第二段连接元素时会用到。名称可以任意，一般为流程的英文缩写和数字的组合。2.type 用来确定标签的类型，=&gt;后面表示类型。由于标签的名称可以任意指定，所以要依赖type来确定标签的类型标签有6种类型：start end operation condition inputoutput subroutine3.content 是流程图文本框中的描述内容，: 后面表示内容，中英文均可。特别注意，冒号与文本之间一定要有个空格4.url是一个连接，与框框中的文本相绑定，:&gt;后面就是对应的 url 链接，点击文本时可以通过链接跳转到 url 指定页面 1.开始st=&gt;start: 开始 2.结束 e=&gt;end: 结束 3.操作 op1=&gt;operation: 操作、执行说明 4.条件 cond=&gt;condition: 确认？ 5.输入输出 io=&gt;inputoutput: catchsomething… 6.子程序 sub1=&gt;subroutine: My Subroutine 7.URL e=&gt;点击本结束跳转:&gt; +使用 -&gt; 来连接两个元素+对于condition类型，有yes和no两个分支，如示例中的cond(yes)和cond(no)+每个元素可以制定分支走向，默认向下，也可以用right指向右边，如示例中sub1(right)。 st=&gt;start: 生产者线程进入 :&gt;www.wenchenkj.com op1=&gt;operation: 设置Info类的名称和内容 op2=&gt;operation: 修改标志位 op3=&gt;operation: 等待线程唤醒 op4=&gt;operation: 等待消费者取走 cond=&gt;condition: 判断标志位 st(right)-&gt;cond-&gt;op1-&gt;op2-&gt;op3 cond(yes,right)-&gt;op1 cond(no)-&gt;op4 上面的流程图使用了URL点击上面的的开始框(生产者线程进入)，就会跳转到我的博客首页www.wenchenkj.com。这里再强调一下：每一个元素都可以加上right指明流程流程图的方向，如果不指定的话默认是向下的]]></content>
+      <categories>
+        <category>markdown</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2018%2F06%2F29%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: DeploymentWelcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>npm</tag>
+        <tag>Github</tag>
+        <tag>Hexo</tag>
+        <tag>基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[基于vue的打印]]></title>
+    <url>%2F2018%2F04%2F12%2F%E5%9F%BA%E4%BA%8Evue%E7%9A%84%E6%89%93%E5%8D%B0%2F</url>
+    <content type="text"><![CDATA[业务需求：目前开发的财务ERP系统，跟金蝶友商类似。科目打印需自动拼接上辅助核算，如科目有外币需打印外币插图：先用需要打印的页面用canvas画出 传成pdf 之后后台配合预览打印pdf。步骤一：安装2个依赖 npm install jspdf html2canvas -D 步骤二：基于jspdf与html2canvas封装一个全局打印方法 代码： import html2Canvas from ‘html2canvas’ import JsPDF from ‘jspdf’ import axios from ‘axios’ //把pdf传给后台 import qs from ‘qs’//需要转换 用JOSN.stringify()不行 export default { install(Vue, options) { Vue.prototype.getPdf= function (dom) { // var title = this.htmlTitle html2Canvas(document.querySelector(dom), { allowTaint: true }).then(function (canvas) { let contentWidth = canvas.width let contentHeight = canvas.height //一页pdf显示html页面生成的canvas高度; let pageHeight = contentWidth / 595.28 * 841.89 //未生成pdf的html页面高度 let leftHeight = contentHeight //页面偏移 let position = 0 //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高 let imgWidth = 595.28 let imgHeight = 592.28 / contentWidth * contentHeight let pageData = canvas.toDataURL(&apos;image/jpeg&apos;, 1.0) // 三个参数，第一个方向，第二个尺寸，第三个尺寸格式 let PDF = new JsPDF(&apos;&apos;, &apos;pt&apos;, &apos;a4&apos;) //有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89) //当内容未超过pdf一页显示的范围，无需分页 if (leftHeight &lt; pageHeight) { PDF.addImage(pageData, &apos;JPEG&apos;, 0, 0, imgWidth, imgHeight) } else { while (leftHeight &gt; 0) { PDF.addImage(pageData, &apos;JPEG&apos;, 0, position, imgWidth, imgHeight) leftHeight -= pageHeight position -= 841.89 //避免添加空白页 if (leftHeight &gt; 0) { PDF.addPage() } } } var instance = axios.create({ timeout: 10000, headers: {‘Content-Type’: ‘application/x-www-form-urlencoded;charset=UTF-8’} }); instance.post(axios.defaults.baseURL+’/file/savepdf’,qs.stringify({ //这个有毒，output输出文件流，PDF.output(‘datauristring’)输出base64文件流。file:PDF.output(‘datauristring’)//base64的文件流 })) .then(function (response) { window.open(axios.defaults.baseURL+’/file/showpdf/‘+response.data.data.uri)//在新的窗口打开 // let dom=document.createElement(&apos;a&apos;); // dom.setAttribute(&apos;href&apos;,axios.defaults.baseURL+&apos;/file/showpdf/&apos;+response.data.data.uri); // dom.setAttribute(&apos;target&apos;,&apos;_blank&apos;); // dom.click();//模拟新的窗口打开 }) .catch(function (error) { console.log(error); }); }) } } } 步骤三：调用 //打印凭证 printVoucher() { //日期 let Voucherdate = new Date(this.pickerOptionsValue); let tableData = this.childData; //整个视图数据 let trData = this.childData.trData; //列数据 //拼凑数据供打印使用,凭证头，尾信息 this.voucherHFdata = { voucherTitle: &quot;记账凭证&quot;, //记账凭证 billNum: this.billNum, //附件数 accbookName: this.$store.state.accbookName, //账套名 date: Voucherdate.getFullYear() + &quot;-&quot; + (Voucherdate.getMonth() + 1) + &quot;-&quot; + Voucherdate.getDate(), //日期 voucherNumber: this.voucherName + &quot;-&quot; + this.voucherNumberValue, //凭证号：大-16 lotal: tableData.DeCr_Total, //合计 supervisor: &quot;&quot;, //主管 cashier: &quot;&quot;, //出纳 auditor: &quot;&quot;, //审核 producer: this.$store.state.voucherProducer //制单 }; //需打印的列数据过滤 // let listData = []; trData.forEach((n, i) =&gt; { //科目是否有辅助核算，有辅助核算，拼接上辅助核算eg:1001 库存现金_销售部 let subjectVal = n.subject.val + (n.subject.auxData.length &gt; 0 ? &quot;_&quot; : &quot;&quot;) + n.subject.auxData .map(item1 =&gt; { return ( item1.options.filter(item2 =&gt; { if (item1.value === item2.uid) return item2; })[0].name || &quot;&quot; ); }) .join(&quot;_&quot;); //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB let curName = n.currency.currencyOptions .filter(item =&gt; { if (item.value === n.currency.currencyValue) return item; }) .map(item =&gt; { return item.label; })[0] || &quot;&quot;; this.listData[i] = { abstract: n.abstract.val, //摘要 subject: subjectVal, //科目是否有辅助核算，有辅助核算，拼接上辅助核算 currencyName: curName, //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB showCur:n.currency.show,//false不显示 exchangeRate: n.currency.exchangeRate, //汇率 original: n.currency.original, //原币 deVal: n.DeCr.De_val, //借方金额 crVal: n.DeCr.Cr_val//贷方金额 }; }); this.$refs.print.printvoucher(); //打印 }, 模板： export default { name: “printVoucher”, props: [“voucherHFdata”, “listData”], data() { return { // htmlTitle: &quot;voucher&quot; tableData:[], hascur:false, }; }, mounted() {}, methods: { printvoucher() { this.voucher5tr( setTimeout(()=&gt;{ this.getPdf(&quot;#printVoucher&quot;); },1000) ); }, //每5列切成一张凭证 voucher5tr() { let tr5 = []; //[[{},{},{},{},{}]]一维变多维 let tr = this.listData; let index = 0; tr.forEach((n, i) =&gt; { if (!tr5[index]) { tr5[index] = []; } tr5[index].push(n); if (tr5[index].length === 5) { index++; } }); let last = tr5[tr5.length - 1]; for (let i = 0,l = 5 - last.length; i &lt; l; i++) { last.push({ abstract: &quot;&quot;, //摘要 showCur:false,//外币不显示 subject: &quot;&quot;, //科目是否有辅助核算，有辅助核算，拼接上辅助核算 currencyName: &quot;&quot;, //是否有外币，没有外币显示空。有外币匹配过滤出外币名称eg：RMB exchangeRate: &quot;&quot;, //汇率 original: &quot;&quot;, //原币 crVal: &quot;&quot;, //贷方金额 deVal: &quot;&quot; //借方金额 }); } this.tableData=tr5; this.tableData.forEach(n=&gt;{ n.forEach(n1=&gt;{ if(n1.showCur===true){ this.hascur=true; } }) }) } } }; 作者：清减半夏时光链接：https://www.jianshu.com/p/3665fbc2533b來源：简书著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>canvas</tag>
+        <tag>npm</tag>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
+</search>
