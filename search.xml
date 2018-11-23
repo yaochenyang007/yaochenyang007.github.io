@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[字符串常用方法]]></title>
+    <url>%2F2018%2F11%2F22%2Fjs%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[JS字符串常用方法concat() :连接字符串 chatAt() :返回指定索引位置的字符，若索引越界，返回空字符串 substr(fromIndex,length)获取部分字符串:从起始索引fromIndex开始截取长度length的字符串 indexOf(),lastindexOf()：找到匹配项返回索引值（一定是绝对位置），如果没找到返回-1 substring(startIndex,endIndex):获取部分字符串截取 起始索引startIndex 到 结束索引endIndex的子字符串， 结果包含startIndex处的字符，不包含endIndex处的字符。 slice(startIndex,endIndex):获取部分字符串截取 起始索引startIndex 到 结束索引endIndex的子字符串，结果包含startIndex处的字符，不包含endIndex处的字符。 split()分割:按给定字符串分割，返回分割后的多个字符串组成的字符串数组。 join()合并:使用您选择的分隔符将一个数组合并为一个字符串 大小写 toLowerCase(), toUpperCase() replace(exp,a)myString = &quot;boy &amp; girl&quot;; myString.replace(/(\w+)\s*&amp;\s*(\w+)/g, &quot;$2 &amp; $1&quot;) //girl &amp; boy replace(exp,a) 第二个参数为函数]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS 中判断空值 undefined 和 null]]></title>
+    <url>%2F2018%2F11%2F22%2FJS-%E4%B8%AD%E5%88%A4%E6%96%AD%E7%A9%BA%E5%80%BC-undefined-%E5%92%8C-null%2F</url>
+    <content type="text"><![CDATA[JS 中 undefined 和 null 判断JS 中如何判断 undefined以下是不正确的用法： 12345var exp = undefined;if (exp == undefined)&#123; alert(&quot;undefined&quot;);&#125; exp 为 null 时，也会得到与 undefined 相同的结果，虽然 null 和 undefined 不一样。注意：要同时判断 undefined 和 null 时可使用本法。 以下是不正确的用法： 12345var exp = undefined;if (typeof(exp) == undefined)&#123; alert(&quot;undefined&quot;);&#125; 以下是正确的用法：12345var exp = undefined;if (typeof(exp) == &quot;undefined&quot;)&#123; alert(&quot;undefined&quot;);&#125; JS 中如何判断 null以下是不正确的用法： 12345var exp = null; if (exp == null) &#123; alert(“is null”); &#125; exp 为 undefined 时，也会得到与 null 相同的结果，虽然 null 和 undefined 不一样。注意：要同时判断 null 和 undefined 时可使用本法。12345var exp = null; if (!exp) &#123; alert(“is null”); &#125; 如果 exp 为 undefined 或者数字零，也会得到与 null 相同的结果，虽然 null 和二者不一样。注意：要同时判断 null、undefined 和数字零时可使用本法。 12345var exp = null; if (typeof(exp) == “null”) &#123; alert(“is null”); &#125; 为了向下兼容，exp 为 null 时，typeof 总返回 object。 12345var exp = null; if (isNull(exp)) &#123; alert(“is null”); &#125; JavaScript 中没有 isNull 这个函数。 以下是正确的用法： 12345var exp = null; if (!exp &amp;&amp; typeof(exp)!=”undefined” &amp;&amp; exp!=0) &#123; alert(“is null”); &#125;]]></content>
+      <categories>
+        <category>js</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[flex布局]]></title>
+    <url>%2F2018%2F10%2F10%2Fflex%E5%B8%83%E5%B1%80%2F</url>
+    <content type="text"><![CDATA[flex布局1.flex-direction:决定主轴的方向（即项目的排列方向）。 row（默认值）：主轴为水平方向，起点在左端。row-reverse：主轴为水平方向，起点在右端。column：主轴为垂直方向，起点在上沿。column-reverse：主轴为垂直方向，起点在下沿 2.flex-wrap:排序方式 nowrap（默认）：不换行。wrap 换行，第一行在上方。wrap-reverse：换行，第一行在下方。 3.flex-flow:flex-direction||flex-wrap 默认row nowrap 4.justify-content:定义了项目在主轴上的对齐方式。 flex-start（默认值）：左对齐flex-end：右对齐center： 居中space-between：两端对齐，项目之间的间隔都相等。space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。 5.align-items属性定义项目在交叉轴上如何对齐。 flex-start：交叉轴的起点对齐。flex-end：交叉轴的终点对齐。center：交叉轴的中点对齐。baseline: 项目的第一行文字的基线对齐。stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。 6.align-content定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。 flex-start：与交叉轴的起点对齐。flex-end：与交叉轴的终点对齐。center：与交叉轴的中点对齐。space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。stretch（默认值）：轴线占满整个交叉轴。]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[vue插件使用]]></title>
     <url>%2F2018%2F10%2F10%2Fvue%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[Loading 加载 插件开发通过全局方法 Vue.use() 使用插件。它需要在你调用 new Vue() 启动应用之前完成： 123456// 调用 `MyPlugin.install(Vue)`Vue.use(MyPlugin)new Vue(&#123; //... options&#125;) 代码源码（vue-cli 脚手架生成单页面项目）： @/components/public/varMess.vue 文件 123456789101112131415161718192021&lt;template&gt; &lt;transition name=&quot;varMess-fade&quot;&gt; &lt;div class=&quot;varMess&quot; v-show=&quot;isShow&quot;&gt; &lt;img class=&quot;message_img&quot; src=&quot;../img/loading.png&quot;&gt; &lt;div class=&quot;message_group&quot;&gt; &lt;p&gt;&#123;&#123;messText&#125;&#125;&lt;/p&gt; &lt;!-- &lt;el-button @click=&quot;isShow = false&quot;&gt;123&lt;/el-button&gt; --&gt; &lt;/div&gt; &lt;/div&gt; &lt;/transition&gt;&lt;/template&gt;&lt;script&gt; export default &#123; props:[&apos;isShow&apos;,&apos;messText&apos;], methods:&#123; &#125; &#125;&lt;/script&gt; @/components/public/index.js 文件 12345678910import varMess from &apos;./varMess.vue&apos;// 这里是重点const VarMess = &#123; install: function(Vue) &#123; Vue.component(&apos;varMess&apos;, varMess) &#125;&#125;// 导出组件export default VarMess main.js文件 注册插件12import varMess from &apos;@/components/public/varMess&apos;;Vue.use(varMess); 使用插件： 1&lt;varMess :isShow=&quot;isShow&quot; messText=&quot;点位加载中，请稍后...&quot;&gt;&lt;/varMess&gt; 显示效果：]]></content>
@@ -52,10 +85,10 @@
         <category>vue</category>
       </categories>
       <tags>
+        <tag>javascript</tag>
+        <tag>npm</tag>
         <tag>vue</tag>
         <tag>canvas</tag>
-        <tag>npm</tag>
-        <tag>javascript</tag>
       </tags>
   </entry>
 </search>

@@ -116,7 +116,7 @@
 
 
 
-  <meta name="keywords" content=",," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -129,18 +129,29 @@
 
 
 
-<meta name="description" content="舍得获得，挣得花得，见自己，见天地，见众生，最后尘土相随。">
-<meta name="keywords" content="HTML,Css">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yaochenyang.xin/tags/index.html">
+<meta name="description" content="JS字符串常用方法concat()  :连接字符串 chatAt()  :返回指定索引位置的字符，若索引越界，返回空字符串 substr(fromIndex,length)获取部分字符串:从起始索引fromIndex开始截取长度length的字符串 indexOf(),lastindexOf()：找到匹配项返回索引值（一定是绝对位置），如果没找到返回-1 substring(startIndex,">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串常用方法">
+<meta property="og:url" content="http://yaochenyang.xin/2018/11/22/js字符串常用方法/index.html">
 <meta property="og:site_name" content="姚晨阳">
-<meta property="og:description" content="舍得获得，挣得花得，见自己，见天地，见众生，最后尘土相随。">
+<meta property="og:description" content="JS字符串常用方法concat()  :连接字符串 chatAt()  :返回指定索引位置的字符，若索引越界，返回空字符串 substr(fromIndex,length)获取部分字符串:从起始索引fromIndex开始截取长度length的字符串 indexOf(),lastindexOf()：找到匹配项返回索引值（一定是绝对位置），如果没找到返回-1 substring(startIndex,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-10T03:32:09.952Z">
+<meta property="og:image" content="http://yaochenyang.xin/img/concat.jpg">
+<meta property="og:image" content="http://yaochenyang.xin/img/chatAt.jpg">
+<meta property="og:image" content="http://yaochenyang.xin/img/substr.jpg">
+<meta property="og:image" content="http://yaochenyang.xin/img/indexOf.jpg">
+<meta property="og:image" content="http://yaochenyang.xin/img/substring.jpg">
+<meta property="og:image" content="http://yaochenyang.xin/img/slice.jpg">
+<meta property="og:image" content="http://yaochenyang.xin/img/split.jpg">
+<meta property="og:image" content="http://yaochenyang.xin/img/join.jpg">
+<meta property="og:image" content="http://yaochenyang.xin/img/tocase.jpg">
+<meta property="og:image" content="http://yaochenyang.xin/img/replace.jpg">
+<meta property="og:updated_time" content="2018-11-23T01:39:05.095Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="舍得获得，挣得花得，见自己，见天地，见众生，最后尘土相随。">
+<meta name="twitter:title" content="字符串常用方法">
+<meta name="twitter:description" content="JS字符串常用方法concat()  :连接字符串 chatAt()  :返回指定索引位置的字符，若索引越界，返回空字符串 substr(fromIndex,length)获取部分字符串:从起始索引fromIndex开始截取长度length的字符串 indexOf(),lastindexOf()：找到匹配项返回索引值（一定是绝对位置），如果没找到返回-1 substring(startIndex,">
+<meta name="twitter:image" content="http://yaochenyang.xin/img/concat.jpg">
 
 
 
@@ -170,13 +181,13 @@
 
 
 
-  <link rel="canonical" href="http://yaochenyang.xin/tags/"/>
+  <link rel="canonical" href="http://yaochenyang.xin/2018/11/22/js字符串常用方法/"/>
 
 
 
 
 
-    <title>tags | 姚晨阳</title>
+    <title>字符串常用方法 | 姚晨阳</title>
     
 
 
@@ -344,40 +355,296 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yaochenyang.xin/2018/11/22/js字符串常用方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="姚晨阳">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/ycy.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="姚晨阳">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 10 个标签
+          <h1 class="post-title" itemprop="name headline">字符串常用方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T14:42:50+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/22/js字符串常用方法/" class="leancloud_visitors" data-flag-title="字符串常用方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  268
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Github/" style="font-size: 12px; color: #ccc">Github</a> <a href="/tags/Hexo/" style="font-size: 12px; color: #ccc">Hexo</a> <a href="/tags/canvas/" style="font-size: 12px; color: #ccc">canvas</a> <a href="/tags/css/" style="font-size: 12px; color: #ccc">css</a> <a href="/tags/javascript/" style="font-size: 30px; color: #111">javascript</a> <a href="/tags/linux/" style="font-size: 12px; color: #ccc">linux</a> <a href="/tags/markdown/" style="font-size: 12px; color: #ccc">markdown</a> <a href="/tags/npm/" style="font-size: 21px; color: #6f6f6f">npm</a> <a href="/tags/vue/" style="font-size: 21px; color: #6f6f6f">vue</a> <a href="/tags/基础/" style="font-size: 12px; color: #ccc">基础</a>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h3 id="JS字符串常用方法"><a href="#JS字符串常用方法" class="headerlink" title="JS字符串常用方法"></a>JS字符串常用方法</h3><h4 id="concat-连接字符串"><a href="#concat-连接字符串" class="headerlink" title="concat()  :连接字符串"></a>concat()  :连接字符串</h4><p><img src="/img/concat.jpg" alt="本地图片" title="连接字符串"></p>
+<h4 id="chatAt-返回指定索引位置的字符，若索引越界，返回空字符串"><a href="#chatAt-返回指定索引位置的字符，若索引越界，返回空字符串" class="headerlink" title="chatAt()  :返回指定索引位置的字符，若索引越界，返回空字符串"></a>chatAt()  :返回指定索引位置的字符，若索引越界，返回空字符串</h4><p><img src="/img/chatAt.jpg" alt="本地图片" title="chatAt"></p>
+<h4 id="substr-fromIndex-length-获取部分字符串"><a href="#substr-fromIndex-length-获取部分字符串" class="headerlink" title="substr(fromIndex,length)获取部分字符串:"></a>substr(fromIndex,length)获取部分字符串:</h4><h5 id="从起始索引fromIndex开始截取长度length的字符串"><a href="#从起始索引fromIndex开始截取长度length的字符串" class="headerlink" title="从起始索引fromIndex开始截取长度length的字符串"></a>从起始索引fromIndex开始截取长度length的字符串</h5><p><img src="/img/substr.jpg" alt="本地图片" title="substr"></p>
+<h4 id="indexOf-lastindexOf-：找到匹配项返回索引值（一定是绝对位置），如果没找到返回-1"><a href="#indexOf-lastindexOf-：找到匹配项返回索引值（一定是绝对位置），如果没找到返回-1" class="headerlink" title="indexOf(),lastindexOf()：找到匹配项返回索引值（一定是绝对位置），如果没找到返回-1"></a>indexOf(),lastindexOf()：找到匹配项返回索引值（一定是绝对位置），如果没找到返回-1</h4><p><img src="/img/indexOf.jpg" alt="本地图片" title="indexOf"></p>
+<h4 id="substring-startIndex-endIndex-获取部分字符串"><a href="#substring-startIndex-endIndex-获取部分字符串" class="headerlink" title="substring(startIndex,endIndex):获取部分字符串"></a>substring(startIndex,endIndex):获取部分字符串</h4><h5 id="截取-起始索引startIndex-到-结束索引endIndex的子字符串，-结果包含startIndex处的字符，不包含endIndex处的字符。"><a href="#截取-起始索引startIndex-到-结束索引endIndex的子字符串，-结果包含startIndex处的字符，不包含endIndex处的字符。" class="headerlink" title="截取 起始索引startIndex  到  结束索引endIndex的子字符串， 结果包含startIndex处的字符，不包含endIndex处的字符。"></a>截取 起始索引startIndex  到  结束索引endIndex的子字符串， 结果包含startIndex处的字符，不包含endIndex处的字符。</h5><p><img src="/img/substring.jpg" alt="本地图片" title="substring"></p>
+<h4 id="slice-startIndex-endIndex-获取部分字符串"><a href="#slice-startIndex-endIndex-获取部分字符串" class="headerlink" title="slice(startIndex,endIndex):获取部分字符串"></a>slice(startIndex,endIndex):获取部分字符串</h4><h5 id="截取-起始索引startIndex-到-结束索引endIndex的子字符串，结果包含startIndex处的字符，不包含endIndex处的字符。"><a href="#截取-起始索引startIndex-到-结束索引endIndex的子字符串，结果包含startIndex处的字符，不包含endIndex处的字符。" class="headerlink" title="截取 起始索引startIndex  到  结束索引endIndex的子字符串，结果包含startIndex处的字符，不包含endIndex处的字符。"></a>截取 起始索引startIndex  到  结束索引endIndex的子字符串，结果包含startIndex处的字符，不包含endIndex处的字符。</h5><p><img src="/img/slice.jpg" alt="本地图片" title="slice"></p>
+<h4 id="split-分割-按给定字符串分割，返回分割后的多个字符串组成的字符串数组。"><a href="#split-分割-按给定字符串分割，返回分割后的多个字符串组成的字符串数组。" class="headerlink" title="split()分割:按给定字符串分割，返回分割后的多个字符串组成的字符串数组。"></a>split()分割:按给定字符串分割，返回分割后的多个字符串组成的字符串数组。</h4><a id="more"></a>
+<p><img src="/img/split.jpg" alt="本地图片" title="split"></p>
+<h4 id="join-合并-使用您选择的分隔符将一个数组合并为一个字符串"><a href="#join-合并-使用您选择的分隔符将一个数组合并为一个字符串" class="headerlink" title="join()合并:使用您选择的分隔符将一个数组合并为一个字符串"></a>join()合并:使用您选择的分隔符将一个数组合并为一个字符串</h4><p><img src="/img/join.jpg" alt="本地图片" title="join"></p>
+<h4 id="大小写-toLowerCase-toUpperCase"><a href="#大小写-toLowerCase-toUpperCase" class="headerlink" title="大小写 toLowerCase(), toUpperCase()"></a>大小写 toLowerCase(), toUpperCase()</h4><p><img src="/img/tocase.jpg" alt="本地图片" title="join"></p>
+<h4 id="replace-exp-a"><a href="#replace-exp-a" class="headerlink" title="replace(exp,a)"></a>replace(exp,a)</h4><pre><code>myString = &quot;boy &amp; girl&quot;;
+myString.replace(/(\w+)\s*&amp;\s*(\w+)/g, &quot;$2 &amp; $1&quot;) //girl &amp; boy
+
+</code></pre><h4 id="replace-exp-a-第二个参数为函数"><a href="#replace-exp-a-第二个参数为函数" class="headerlink" title="replace(exp,a) 第二个参数为函数"></a>replace(exp,a) 第二个参数为函数</h4><p><img src="/img/replace.jpg" alt="本地图片" title="join"></p>
+
       
     </div>
     
     
     
+
+
+     
+        <div>
+          
+         <div>
+      
+
+     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="姚晨阳 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="姚晨阳 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="姚晨阳 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/22/JS-中判断空值-undefined-和-null/" rel="next" title="JS 中判断空值 undefined 和 null">
+                <i class="fa fa-chevron-left"></i> JS 中判断空值 undefined 和 null
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+     
+
+   
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
   </div>
 
 
@@ -411,8 +678,17 @@
     <div class="sidebar-inner">
 
          
+        <ul class="sidebar-nav motion-element">
+            <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+                文章目录
+            </li>
+            <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+                站点概览
+            </li>
+        </ul>
+        
 
-        <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <section class="site-overview-wrap sidebar-panel">
             <div class="site-overview">
                 <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
                     
@@ -527,6 +803,18 @@
             </div>
         </section>
 
+        
+        <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+            <div class="post-toc">
+
+                   
+                    <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JS字符串常用方法"><span class="nav-number">1.</span> <span class="nav-text">JS字符串常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#concat-连接字符串"><span class="nav-number">1.1.</span> <span class="nav-text">concat()  :连接字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chatAt-返回指定索引位置的字符，若索引越界，返回空字符串"><span class="nav-number">1.2.</span> <span class="nav-text">chatAt()  :返回指定索引位置的字符，若索引越界，返回空字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#substr-fromIndex-length-获取部分字符串"><span class="nav-number">1.3.</span> <span class="nav-text">substr(fromIndex,length)获取部分字符串:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#从起始索引fromIndex开始截取长度length的字符串"><span class="nav-number">1.3.1.</span> <span class="nav-text">从起始索引fromIndex开始截取长度length的字符串</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#indexOf-lastindexOf-：找到匹配项返回索引值（一定是绝对位置），如果没找到返回-1"><span class="nav-number">1.4.</span> <span class="nav-text">indexOf(),lastindexOf()：找到匹配项返回索引值（一定是绝对位置），如果没找到返回-1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#substring-startIndex-endIndex-获取部分字符串"><span class="nav-number">1.5.</span> <span class="nav-text">substring(startIndex,endIndex):获取部分字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#截取-起始索引startIndex-到-结束索引endIndex的子字符串，-结果包含startIndex处的字符，不包含endIndex处的字符。"><span class="nav-number">1.5.1.</span> <span class="nav-text">截取 起始索引startIndex  到  结束索引endIndex的子字符串， 结果包含startIndex处的字符，不包含endIndex处的字符。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#slice-startIndex-endIndex-获取部分字符串"><span class="nav-number">1.6.</span> <span class="nav-text">slice(startIndex,endIndex):获取部分字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#截取-起始索引startIndex-到-结束索引endIndex的子字符串，结果包含startIndex处的字符，不包含endIndex处的字符。"><span class="nav-number">1.6.1.</span> <span class="nav-text">截取 起始索引startIndex  到  结束索引endIndex的子字符串，结果包含startIndex处的字符，不包含endIndex处的字符。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#split-分割-按给定字符串分割，返回分割后的多个字符串组成的字符串数组。"><span class="nav-number">1.7.</span> <span class="nav-text">split()分割:按给定字符串分割，返回分割后的多个字符串组成的字符串数组。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#join-合并-使用您选择的分隔符将一个数组合并为一个字符串"><span class="nav-number">1.8.</span> <span class="nav-text">join()合并:使用您选择的分隔符将一个数组合并为一个字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大小写-toLowerCase-toUpperCase"><span class="nav-number">1.9.</span> <span class="nav-text">大小写 toLowerCase(), toUpperCase()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#replace-exp-a"><span class="nav-number">1.10.</span> <span class="nav-text">replace(exp,a)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#replace-exp-a-第二个参数为函数"><span class="nav-number">1.11.</span> <span class="nav-text">replace(exp,a) 第二个参数为函数</span></a></li></ol></li></ol></div>
+                    
+
+            </div>
+        </section>
+        <!--/noindex-->
          
 
     </div>
